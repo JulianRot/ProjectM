@@ -56,6 +56,7 @@ var objects = [];
 var INTERSECTED, SELECTED;
 
 var viewportH = 0, viewportW = 0;
+var orientControl;
 
 //UI ELEMENTS
 var outliner;
@@ -85,6 +86,7 @@ function animate () {
   // ------------------------------------------------------ UI
   requestAnimationFrame( animate );  
   controls.update();
+  orientControl.update();
 
   popGenCounter();
   // ------------------------------------------------------ RUN CLASSES
@@ -184,9 +186,11 @@ function initProgram(){
   // REFRENCE PLANE FOR DRAG OBJECTS
   refPlane = new THREE.Mesh(
   new THREE.PlaneBufferGeometry( 5000, 5000, 8, 8),
-  new THREE.MeshBasicMaterial( {color: 0xfffff ,visible : true, transparent: true, opacity: 0.01})
+  new THREE.MeshBasicMaterial( {color: 0xfffff ,visible : true, transparent: true, opacity: 0.2})
   );
   scene.add(refPlane);
+
+  orientControl = new THREE.DeviceOrientationControls( refPlane );
 
 }// end initProgram
 
