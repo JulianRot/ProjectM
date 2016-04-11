@@ -1,0 +1,154 @@
+<html>
+<head>
+        <meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="An app for designing a smart screenwall.">
+        <title>CrowdCreating</title>
+        
+        <!-- GOOGLE MATERIAL DESIGN LITE STYLESHEETS AND SCRIPTS -->
+        <link rel="stylesheet" href="../libraries/Google-mdl/material.css">
+        <script src="libraries/Google-mdl/material.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--style> body {padding: 0; margin: 0;} </style-->
+</head>
+
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+
+    <!-- HEADER -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" style="z-index: 2">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--white">
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect mdl-color--primary">
+          <a href="#overview" class="mdl-color-text--white mdl-tabs__tab is-active">Design Mode</a>
+          <a href="#features" class="mdl-color-text--white mdl-tabs__tab">Element Mode</a>
+          <a href="#features" class="mdl-color-text--white mdl-tabs__tab">Fabrication Mode</a>
+          
+          <!-- Right aligned menu below button -->
+          <button id="demo-menu-lower-left"
+                  class="mdl-button mdl-js-button mdl-button--icon"
+                  style="position: relative; margin-left: 40px; margin-top: 7px; float: left">
+            <i class="material-icons">more_vert</i>
+          </button>
+
+          <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+              for="demo-menu-lower-left">
+            <li class="mdl-menu__item" id="Bake">Toggle Bake</li>
+            <li class="mdl-menu__item" id="UnfoldTets">Unfold Tets</li>
+            <li class="mdl-menu__item" id="UnfolPoly">Unfold Poly</li>
+            <li class="mdl-menu__item" id="CutFiles">Get Cut Files</li>
+            <li class="mdl-menu__item" id="Export">Export .obj</li>
+            <li class="mdl-menu__item" id="Save">Save</li>
+          </ul>
+
+
+        </div>
+      </header>
+
+
+
+
+      
+      <!-- EDITOR -->
+      <main class="mdl-layout__content" style=" margin: 0; padding: 0" id="Viewport">
+        <!-- 3D SCENE -->
+        <div class="" style="position: absolute; " id="domContainer"></div>
+       
+        <!-- UI ELEMENTS LARGE SCREEN-->
+          <section class="mdl-layout--large-screen-only mdl-grid mdl-shadow--2dp mdl-cell--3-col mdl-color--white" style="position: relative; margin-top:100px; margin-right: 40px; float: right" >
+              
+              <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                <div class="mdl-tabs__tab-bar">
+                  <a href="#control-panel" class="mdl-tabs__tab is-active">Control</a>
+                  <a href="#console-panel" class="mdl-tabs__tab">Console</a>
+                </div>
+
+
+
+                <div class="mdl-card mdl-cell mdl-cell--12-col mdl-tabs__panel is-active" id="control-panel">
+                  <p class="mdl-card__supporting-text"></p>
+              
+                  <input id="s1" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="25" tabindex="0">
+                  <p class="mdl-card__supporting-text">Birth Rate</p>
+                  <input id="s1" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="25" tabindex="0">
+                  <p class="mdl-card__supporting-text">Speed Limit</p>
+                  <input id="s1" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="20" tabindex="0">
+                  <p class="mdl-card__supporting-text">Maxmimal Count</p>
+                  <input id="s1" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="25" tabindex="0">
+                  <p class="mdl-card__supporting-text">Material</p>
+                </div>
+
+                <div class="mdl-card mdl-cell mdl-cell--12-col mdl-tabs__panel " id="console-panel">
+
+                  <!-- OUTPUT CONSOLE -->
+                  <p class="mdl-color-text--grey-600" id="Outliner"><i>If you select something, I will unveil my treasure! ;-) </i></p>
+                  <!-- INPUT CONSOLE -->
+                  <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" id="Bash">
+                      <label class="mdl-textfield__label" for="Bash">Bash>_</label>
+                    </div>
+                  </form>
+
+                </div>
+
+              </div>
+          </section>
+
+        <!-- UI ELEMENTS SMALL SCREEN-->
+        <section class="mdl-layout--small-screen-only mdl-shadow--2dp mdl-cell--3-col mdl-color--white" 
+          style="position: relative;position: bottom; margin: 2%; float: right">
+          
+          <div class="mdl-card mdl-cell" id="console-panel">
+            <!-- OUTPUT CONSOLE -->
+            <p class="mdl-color-text--grey-600 mdl-cell" id="OutlinerM"><i>If you select something, I will unveil my treasure! ;-) </i></p>
+            <!-- INPUT CONSOLE -->
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="BashM">
+                <label class="mdl-textfield__label" for="BashM">Bash>_</label>
+              </div>
+            </form>
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+    <!--_______________________________________________________________________ THREE.js -->
+    
+
+    <!--_______________________________________________________________________ Libraries -->
+    <!-- I modified three.js, added THREE.Vector3.limit methode-->
+    <script language="javascript" type="text/javascript" src="libraries/three.js"></script>
+    <script language="javascript" type="text/javascript" src="libraries/TrackballControls.js"></script>
+    <script language="javascript" type="text/javascript" src="libraries/dat.gui.js"></script>
+    <script language="javascript" type="text/javascript" src="libraries/stats.min.js"></script>
+    <script language="javascript" type="text/javascript" src="libraries/OBJExporter.js"></script>
+    <script language="javascript" type="text/javascript" src="libraries/FileSaver.js"></script>
+
+    <script language="javascript" type="text/javascript" src="data/SavedPopulations_1.js"></script>
+    <script language="javascript" type="text/javascript" src="data/SavedPopulations_2.js"></script>
+
+    <!--_______________________________________________________________________ MY CODE -->
+    <script language="javascript" type="text/javascript" src="UI/01.1_AgentSystem.js"></script>
+    <script language="javascript" type="text/javascript" src="UI/01.2_Agent.js"></script>
+    <script language="javascript" type="text/javascript" src="UI/01.4_TetAgent.js"></script>
+    <script language="javascript" type="text/javascript" src="UI/01.5_PolyAgent.js"></script>
+UI/
+    <script language="javascript" type="text/javascript" src="UI/02.1_Environment.js"></script> 
+    <script language="javascript" type="text/javascript" src="UI/03.1_GlobalParameters.js"></script> 
+    <script language="javascript" type="text/javascript" src="UI/04.2_Events.js"></script>
+    <script language="javascript" type="text/javascript" src="UI/04.3_GUI.js"></script>
+    <script language="javascript" type="text/javascript" src="UI/04.4_C-Planes.js"></script>
+    <script language="javascript" type="text/javascript" src="UI/04.5_MouseAction.js"></script>
+    <script language="javascript" type="text/javascript" src="UI/05.1_Utilities.js"></script>
+    <script language="javascript" type="text/javascript" src="UI/05.2_Fabrication.js"></script>
+
+    <script language="javascript" type="text/javascript" src="UI/00_mainScript.js"></script>
+    
+
+    <!--_______________________________________________________________________ END THREE.js -->
+
+</body>
+</html>
