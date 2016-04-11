@@ -188,6 +188,7 @@ function initProgram(){
   new THREE.PlaneBufferGeometry( 5000, 5000, 8, 8),
   new THREE.MeshBasicMaterial( {color: 0xfffff ,visible : true, transparent: true, opacity: 0.2})
   );
+  refPlane.material.side = THREE.DoubleSide;
   scene.add(refPlane);
 
   orientControl = new THREE.DeviceOrientationControls( refPlane );
