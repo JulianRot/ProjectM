@@ -88,6 +88,10 @@ function animate () {
   controls.update();
   orientControl.update();
 
+  var v = new THREE.Vector3(0,0,1).applyQuaternion(refPlane.quaternion);
+  document.getElementById("OutlinerM").innerHTML = ( v.x +"<br> "+ v.y +"<br> "+ v.z );
+
+
   popGenCounter();
   // ------------------------------------------------------ RUN CLASSES
   myAgentSystem.run();
