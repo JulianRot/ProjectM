@@ -95,7 +95,7 @@ function animate () {
   transformCntrl.update();
 
   var v = new THREE.Vector3(0,0,1).applyQuaternion(refPlane.quaternion);
-  document.getElementById("OutlinerM").innerHTML = ( v.x +"<br> "+ v.y +"<br> "+ v.z );
+  // document.getElementById("OutlinerM").innerHTML = ( v.x +"<br> "+ v.y +"<br> "+ v.z );
 
 
   popGenCounter();
@@ -198,7 +198,7 @@ function initProgram(){
   new THREE.MeshBasicMaterial( {color: 0xfffff ,visible : true, transparent: true, opacity: 0.2})
   );
   refPlane.material.side = THREE.DoubleSide;
-  scene.add(refPlane);
+  // scene.add(refPlane);
 
   // ---------------------------------- CONTROLS
   cameraCntrl = new THREE.TrackballControls( camera, renderer.domElement );
