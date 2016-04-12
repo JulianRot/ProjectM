@@ -14,40 +14,43 @@
 
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 
-    <!-- HEADER -->
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" style="z-index: 2">
-      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--white">
-        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect mdl-color--primary">
-          <a href="#overview" class="mdl-color-text--white mdl-tabs__tab is-active">Design Mode</a>
-          <a href="#features" class="mdl-color-text--white mdl-tabs__tab">Element Mode</a>
-          <a href="#features" class="mdl-color-text--white mdl-tabs__tab">Fabrication Mode</a>
-          
-          <!-- Right aligned menu below button -->
-          <button id="demo-menu-lower-left"
-                  class="mdl-button mdl-js-button mdl-button--icon"
-                  style="position: relative; margin-left: 40px; margin-top: 7px; float: left">
-            <i class="material-icons">more_vert</i>
-          </button>
+    <!-- LAYOUT -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-          <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-              for="demo-menu-lower-left">
-            <li class="mdl-menu__item" id="Refresh">Refresh</li>
-            <li class="mdl-menu__item" id="Bake">Toggle Bake</li>
-            <li class="mdl-menu__item" id="UnfoldTets">Unfold Tets</li>
-            <li class="mdl-menu__item" id="UnfolPoly">Unfold Poly</li>
-            <li class="mdl-menu__item" id="CutFiles">Get Cut Files</li>
-            <li class="mdl-menu__item" id="Export">Export .obj</li>
-            <li class="mdl-menu__item" id="Save">Save</li>
-          </ul>
-
-
+      <!-- HEADER -->
+      <header class="mdl-layout__header mdl-layout__header--seamed">
+        <div class="mdl-layout__header-row  ">
+          <!-- TITEL -->
+          <span class="mdl-layout-title mdl-color--primary">CrowdCreating</span>
+          <!-- SPACER -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- PLAY BUTTON -->
+          <div>
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab mdl-button--colored">
+              <i class="material-icons">add</i>
+            </button>
+          </div>
         </div>
       </header>
 
+      <!-- DRAWER -->
+      <div class="mdl-layout__drawer" >
+          <span class="mdl-layout-title">Options</span>
+          <nav class="mdl-navigation">
+              <li class="mdl-navigation__link" id="Refresh">Refresh</li>
+              <li class="mdl-navigation__link" id="Bake">Toggle Bake</li>
+              <li class="mdl-navigation__link" id="UnfoldTets">Unfold Tets</li>
+              <li class="mdl-navigation__link" id="UnfolPoly">Unfold Poly</li>
+              <li class="mdl-navigation__link" id="CutFiles">Get Cut Files</li>
+              <li class="mdl-navigation__link" id="Export">Export .obj</li>
+              <li class="mdl-navigation__link" id="Save">Save</li>
+              <li class="mdl-navigation__link" id="loadDefault">Load Default</li>
+              <li class="mdl-navigation__link" id="loadPrometheus">Load Prometheus</li>
+          </nav>
+      </div>
 
 
 
-      
       <!-- EDITOR -->
       <main class="mdl-layout__content" style=" margin: 0; padding: 0" id="Viewport">
         <!-- 3D SCENE -->
@@ -65,8 +68,23 @@
 
 
                 <div class="mdl-card mdl-cell mdl-cell--12-col mdl-tabs__panel is-active" id="control-panel">
-                  <p class="mdl-card__supporting-text"></p>
-              
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect" 
+                          style="margin-left: 5px"
+                          id = "PopStrategy"> 
+                          Appomixis 
+                  </button>
+
+                  <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                      for="PopStrategy">
+                    <li class="mdl-menu__item">Appomixis B</li>
+                    <li class="mdl-menu__item">Appomixis C</li>
+                    <li class="mdl-menu__item">Strategy A</li>
+                    <li class="mdl-menu__item">Paint</li>
+                  </ul>
+
+                  <p class="mdl-card__supporting-text">Population Strategy</p>
+                
                   <input id="s1" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="25" tabindex="0">
                   <p class="mdl-card__supporting-text">Birth Rate</p>
                   <input id="s1" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="25" tabindex="0">
