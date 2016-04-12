@@ -102,6 +102,11 @@ cPlane.prototype = {
 		return clp;
 	},// end getCentreLinePoints
 
+	//------------------------------------------------------- GET ORIGIN
+	getOrigin : function(){
+		return this.object.position;
+	}, // end getOrigin
+
 
 	//------------------------------------------------------- GET INFORMATION FOR OUTLINER
   getOutlineInfo : function(){

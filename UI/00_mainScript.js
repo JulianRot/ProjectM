@@ -207,7 +207,6 @@ function initProgram(){
   transformCntrl = new THREE.TransformControls( camera, renderer.domElement);
   transformCntrl.size = 0.5;
   transformCntrl.renderOrder = 10;
-  transformCntrl.addEventListener('change', render);
   transformCntrl.attach(refPlane);
   scene.add(transformCntrl);
   // console.log(transformCntrl);

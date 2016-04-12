@@ -30,6 +30,7 @@ function onDocumentMouseMove( event ) {
 function onDocumentMouseDown( event ) {
 	event.preventDefault();
 	
+
 	raycaster.setFromCamera(mouse, camera);
 
 	var selObj1 = scene.getObjectByName("CPLANES").children;
@@ -38,18 +39,26 @@ function onDocumentMouseDown( event ) {
 	var intersects = raycaster.intersectObjects(SELECTABLE);
 
 	if (intersects.length > 0) {
-		cameraCntrl.enabled = false;
-		SELECTED = intersects[0].object;
 
-		transformCntrl.detach()
-		transformCntrl.attach(SELECTED);
-		transformCntrl.setSpace("local");
+		if (SELECTED == null) {
+			cameraCntrl.enabled = false;
+			SELECTED = intersects[0].object;
 
-		domContainer.style.cursor = "move";
+			transformCntrl.detach();
+			transformCntrl.attach(SELECTED);
+			transformCntrl.setSpace("local");
 
-		// UPDATE OUTLINER WITH INFORMATION ABOUT SELECTED
-		updateOutliner( SELECTED );
+			domContainer.style.cursor = "move";
+
+			// UPDATE OUTLINER WITH INFORMATION ABOUT SELECTED
+			updateOutliner( SELECTED );
+		}
 	}
+	else {
+		if ( SELECTED == null ) transformCntrl.detach();		
+		SELECTED = null;
+	}
+
 }// end onDocumentMouseDown
 
 // -------------------------------------------------------- ON DOCUMENT MOUSE UP
@@ -57,9 +66,9 @@ function onDocumentMouseUp( event ) {
 	event.preventDefault();
 	cameraCntrl.enabled = true;
 
-	if (INTERSECTED) {
-		SELECTED = null;
-	}
+	// if (INTERSECTED) {
+	// 	SELECTED = null;
+	// }
 	domContainer.style.cursor = "auto";
 }// end onDocumentMouseUp
 

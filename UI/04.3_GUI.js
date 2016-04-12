@@ -40,6 +40,10 @@ function initGUI(){
 // ---------------------------------------------------------------------------- INIT BUTTONS
 function initButtons(){
 
+	// Refresh
+  refreshBtn = document.getElementById( "Refresh" );
+  refreshBtn.addEventListener( "click", function() { myEnvironment.refresh(); });
+
 	// BAKE
   bakeBtn = document.getElementById( "Bake" );
   bakeBtn.addEventListener( "click", function() { keybool = !keybool; });

@@ -21,7 +21,9 @@ Environment = function(){
   this.pointGeo = new THREE.Geometry();
   this.pointMAt = ml.points_Envi;
   this.dispPoints;
-  // scene.add(this.dispPoints);
+
+  this.botPlaPosition;
+  this.topPlaPosition;
 }
     
 Environment.prototype = {
@@ -30,6 +32,12 @@ Environment.prototype = {
 
   //------------------------------------------------------- RUN
   run : function(){
+    // CHECK FOR CHANGES
+    if (  ! this.bottomPlane.object.position.equals(this.botPlaPosition)  ||
+          ! this.topPlane.object.position.equals(this.topPlaPosition) ) {
+      this.refresh();
+    }
+
     this.readyFlag = true;
     this.displacement();
 
@@ -52,15 +60,17 @@ Environment.prototype = {
     if (this.cPlanes.length > 1){
       // check for bottom and top cPlane
       for (var i = 0; i < this.cPlanes.length; i++) {
-        if( this.cPlanes[i].origin.y > maxY ){
+        if( this.cPlanes[i].object.position.y > maxY ){
           this.topPlane = this.cPlanes[i];
           this.cPlanes[i].usage = "Top-Plane";
-          maxY = this.cPlanes[i].origin.y;
+          maxY = this.cPlanes[i].object.position.y;
+          this.topPlaPosition = new THREE.Vector3().copy(this.cPlanes[i].object.position);
         }
-        if( this.cPlanes[i].origin.y < minY ){
+        if( this.cPlanes[i].object.position.y < minY ){
           this.bottomPlane = this.cPlanes[i];
           this.cPlanes[i].usage = "Bottom-Plane";
-          minY = this.cPlanes[i].origin.y;
+          minY = this.cPlanes[i].object.position.y;
+          this.botPlaPosition = new THREE.Vector3().copy(this.cPlanes[i].object.position);
         }
       }
 
@@ -240,7 +250,15 @@ Environment.prototype = {
 
   //------------------------------------------------------- DISPLAY
   refresh : function(){
+
     scene.getObjectByName("ENVIRONMENT").remove(this.dispPoints);
+    this.pointGeo = new THREE.Geometry();
+    // this.evaluatePlanes();
+    this.voxelSpace();
+    this.display();
+
+    this.botPlaPosition = new THREE.Vector3().copy(this.bottomPlane.object.position);
+    this.topPlaPosition = new THREE.Vector3().copy(this.topPlane.object.position);
   }// end refresh
   //----------------------------------------------------------------------------- END META AGENT SYSTEM
 }
