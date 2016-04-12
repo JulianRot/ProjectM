@@ -40,13 +40,27 @@ function initGUI(){
 // ---------------------------------------------------------------------------- INIT BUTTONS
 function initButtons(){
 
+	// PLAY GROWTH
+	playBtn = document.getElementById("play");
+	playBtn.addEventListener( "click", function(){ playFlag = !playFlag; });
+
 	// Refresh
   refreshBtn = document.getElementById( "Refresh" );
   refreshBtn.addEventListener( "click", function() { myEnvironment.refresh(); });
 
 	// BAKE
   bakeBtn = document.getElementById( "Bake" );
-  bakeBtn.addEventListener( "click", function() { keybool = !keybool; });
+  bakeBtn.addEventListener( "click", function() { 
+  	if (bakeFlag == false) { 
+  		playFlag = false;
+  		bakeFlag = true;
+  		myAgentSystem.bakeAgents();
+  	}
+  	else{
+  		playFlag = true;
+  		bakeFlag = false;
+  	}
+  });
 
   // EXPORT BUTTON
   exportBtn = document.getElementById( "Export" );

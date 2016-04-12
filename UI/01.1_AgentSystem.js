@@ -21,7 +21,7 @@ AgentSystem = function(){
   this.stockVertCount = 500; // INITIAL NUMBER OF STOCK VERTECIES
   this.pointGeo = new THREE.Geometry();  
   this.pointObj = new THREE.Points( this.pointGeo, ml.points_50_greyD);
-  this.pointObj.renderOrder = 1;
+  this.pointObj.renderOrder = 2;
 
   //------------------------------------------------------- INIT
   this.init = function( _environment ){
@@ -42,20 +42,23 @@ AgentSystem.prototype = {
     // POPULATION HANDLER
     GP.birthcount = 0;
     this.populationHandlerOnRun();
-
+    console.log(bakeFlag);
     // RUNNING
-    if (keybool == true) {
+    if (playFlag == true) {
+
+      // DELETE BAKED OBJECTS
       WALL.children = [];
+
       // RUN AGENTS
       for(var i = 0, il = this.container.length; i < il; i++){
         this.container[i].run();
       }
 
       // RUN TETS
-      if ( this.tetAgents.length < 10000) {
+      if ( this.tetAgents.length < GP.maxTetCount) {
 
         var tetAgentsCopy = this.tetAgents.slice();
-        
+
         switch (TC.growthStyle){
           case "CENTRAL":
             break;
@@ -67,6 +70,7 @@ AgentSystem.prototype = {
           tetAgentsCopy[i].run();
         }
       }
+
       else {
         console.log("Numer of Tet-Agents :" + this.tetAgents.length);
         for (var i = 0, il = this.tetAgents.length; i < il; i++) {
@@ -92,14 +96,6 @@ AgentSystem.prototype = {
       }
 
       this.pointGeo.verticesNeedUpdate = true;
-      this.noUpdateCount = 0;
-    }
-
-
-    // STATIC
-    else{
-      if (this.noUpdateCount == 0) this.bakeAgents();
-      this.noUpdateCount++;
     }
   },// end run
 
@@ -107,7 +103,7 @@ AgentSystem.prototype = {
   populationHandlerOnRun : function(){
     stoptime = 7999;
 
-    switch("LOAD"){
+    switch("A"){
 
       case "A":
         //----- STRATEGY A
@@ -189,7 +185,7 @@ AgentSystem.prototype = {
         //----- LOAD FROM JSON
         var start = 50;
         if ( iCounter == start ) this.popFromJSON();
-        // if ( iCounter == start+1 ) keybool = false;
+        // if ( iCounter == start+1 ) bakeFlag = false;
         break;
 
       case "APOMIXIS":
@@ -240,8 +236,8 @@ AgentSystem.prototype = {
           this.loadJSON( CANDIDAT_11 );
           this.bakeAgents();
         } 
-        // if ( iCounter == start+1 ) keybool = false;
-        keybool = false;
+        // if ( iCounter == start+1 ) bakeFlag = false;
+        playFlag = false;
         break;
         
     }

@@ -3,9 +3,9 @@
 
 // ---------------------------------------------------------------------------- TIMER
 function timer() {
-  if(keybool == true){
+  if(bakeFlag == true){
     if (iCounter > stoptime) {
-      keybool = false;
+      bakeFlag = false;
     }
   }
 }// end timer

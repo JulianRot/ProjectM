@@ -34,15 +34,16 @@ var domContainer,
   renderer, 
   stats;
 
+// EVENTS
+var bakeFlag = false;
+var playFlag = false;
+
 // POPULATION
 var populationFlag = false;
 var genCount = 0;
 var iCounter = 0;
 var genStep = 200;
 var stoptime = 4000;
-
-// EVENTS
-var keybool = true;
 
 // SELECT ELEMENTS
 var mouse = new THREE.Vector2();

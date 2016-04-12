@@ -20,7 +20,7 @@ function onDocumentKeyDown(event){
 		infoInput();
 	}
 	// if (event.code === "KeyG") {
-	// 	keybool = !keybool;
+	// 	bakeFlag = !bakeFlag;
 	// }
 
 	// if (event.code === "KeyS") {
@@ -39,7 +39,7 @@ function onDocumentKeyDown(event){
 	// if (event.code === "KeyE") {
 	// 	exportToObj ();
 	// } 
- //  //console.log(keybool);
+ //  //console.log(bakeFlag);
 }// end onDocumentKeyDown
 
 // ---------------------------------------------------------------------------- ON DOCUMENT MOUSE UP

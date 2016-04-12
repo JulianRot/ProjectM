@@ -15,7 +15,8 @@ var GP = {
 
 	// POPULATION RELATED
 	birthcount : 0,
-	maxBirthRate : 1
+	maxBirthRate : 1,
+	maxTetCount : 100
 };
 
 //------------------------------------------------------- ALL VARIABLE FOR AGENT CONTROL
