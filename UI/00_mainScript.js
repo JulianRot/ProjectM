@@ -32,7 +32,6 @@ var domContainer,
   dirLight2, 
   hemiLight, 
   renderer, 
-  controls,
   stats;
 
 // POPULATION
@@ -56,7 +55,11 @@ var objects = [];
 var INTERSECTED, SELECTED;
 
 var viewportH = 0, viewportW = 0;
-var orientControl;
+
+// CONTROLS
+var cameraCntrl,
+    orientCntrl,
+    transformCntrl;
 
 //UI ELEMENTS
 var outliner;
@@ -85,8 +88,11 @@ function init(){
 function animate () {
   // ------------------------------------------------------ UI
   requestAnimationFrame( animate );  
-  controls.update();
-  orientControl.update();
+
+  // UPDATE CONTROLS
+  cameraCntrl.update();
+  orientCntrl.update();
+  transformCntrl.update();
 
   var v = new THREE.Vector3(0,0,1).applyQuaternion(refPlane.quaternion);
   document.getElementById("OutlinerM").innerHTML = ( v.x +"<br> "+ v.y +"<br> "+ v.z );
@@ -162,8 +168,7 @@ function initProgram(){
   dirLight2.castShadow = true;
   scene.add( dirLight2 );
 
-  // ---------------------------------- CONTROLS
-  controls = new THREE.TrackballControls( camera, renderer.domElement );
+
 
   // ---------------------------------- INIT LAYER OBJECTS
   WALL = new THREE.Object3D();
@@ -195,7 +200,17 @@ function initProgram(){
   refPlane.material.side = THREE.DoubleSide;
   scene.add(refPlane);
 
-  orientControl = new THREE.DeviceOrientationControls( refPlane );
+  // ---------------------------------- CONTROLS
+  cameraCntrl = new THREE.TrackballControls( camera, renderer.domElement );
+  orientCntrl = new THREE.DeviceOrientationControls( refPlane );
+
+  transformCntrl = new THREE.TransformControls( camera, renderer.domElement);
+  transformCntrl.size = 0.5;
+  transformCntrl.renderOrder = 10;
+  transformCntrl.addEventListener('change', render);
+  transformCntrl.attach(refPlane);
+  scene.add(transformCntrl);
+  // console.log(transformCntrl);
 
 }// end initProgram
 

@@ -236,6 +236,11 @@ Environment.prototype = {
     }
 
     return bestVoxel;
-  }// end getBestPointToOrientation
+  },// end getBestPointToOrientation
+
+  //------------------------------------------------------- DISPLAY
+  refresh : function(){
+    scene.getObjectByName("ENVIRONMENT").remove(this.dispPoints);
+  }// end refresh
   //----------------------------------------------------------------------------- END META AGENT SYSTEM
 }
