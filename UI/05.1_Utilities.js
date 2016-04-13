@@ -620,6 +620,7 @@ function getElement ( uid ){
         if(tempFuids.indexOf(parseFloat(parts[1])) != -1){
           element = tempAgent;
           normal = element.getFaceNormal( tempFuids.indexOf(parseFloat(parts[1])) );
+          myOrienTool.setTargetNormal(normal);
           (element.poly == null) ? connected.push("T-"+element.ID) : connected.push("P-"+element.poly.ID);
           // break;
         }

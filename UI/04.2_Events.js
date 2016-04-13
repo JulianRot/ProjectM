@@ -68,6 +68,7 @@ function infoInput(){
 	}
 	else{
 		outputTarget.innerHTML = "<i>If you select something, I will unveil my treasure! ;-) </i>";
+		myOrienTool.clearTargetNormal();
 	}
 	
 
@@ -89,6 +90,8 @@ function infoInput(){
 
 			default:
 				outputTarget.innerHTML = "Don't know <b>" + commands + "</b> :(";
+				myOrienTool.clearTargetNormal();
+				break;
 		}
 	}
 }// end infoInput

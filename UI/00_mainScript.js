@@ -59,6 +59,7 @@ var viewportH = 0, viewportW = 0;
 
 // CONTROLS
 var cameraCntrl,
+    myOrienTool,
     orientCntrl,
     transformCntrl;
 
@@ -92,6 +93,7 @@ function animate () {
   cameraCntrl.update();
   orientCntrl.update();
   transformCntrl.update();
+  myOrienTool.update();
 
   // var v = new THREE.Vector3(0,0,1).applyQuaternion(refPlane.quaternion);
   // document.getElementById("OutlinerM").innerHTML = ( v.x +"<br> "+ v.y +"<br> "+ v.z );
@@ -198,8 +200,11 @@ function initProgram(){
   // scene.add(refPlane);
 
   // ---------------------------------- CONTROLS
+  myOrienTool = new OrientationTool();
   cameraCntrl = new THREE.TrackballControls( camera, renderer.domElement );
-  orientCntrl = new THREE.DeviceOrientationControls( refPlane );
+  orientCntrl = new THREE.DeviceOrientationControls( myOrienTool.plane );
+
+  console.log(myOrienTool);
 
   transformCntrl = new THREE.TransformControls( camera, renderer.domElement);
   transformCntrl.size = 0.5;
