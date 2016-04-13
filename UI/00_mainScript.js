@@ -25,25 +25,26 @@ var VIEW_ANGLE = 35,
 
 // CANVAS ELEMENTS
 var domContainer,
-  viewport,
-  scene, 
-  camera,
-  dirLight1, 
-  dirLight2, 
-  hemiLight, 
-  renderer, 
-  stats;
+    viewport,
+    scene, 
+    camera,
+    dirLight1, 
+    dirLight2, 
+    hemiLight, 
+    renderer, 
+    stats;
 
 // EVENTS
-var bakeFlag = false;
-var playFlag = false;
+var bakeFlag = false,
+    playFlag = false,
+    populationFlag = false;
+
 
 // POPULATION
-var populationFlag = false;
-var genCount = 0;
-var iCounter = 0;
-var genStep = 200;
-var stoptime = 4000;
+var genCount = 0,
+    TIME = 0,
+    genStep = 200,
+    stoptime = 4000;
 
 // SELECT ELEMENTS
 var mouse = new THREE.Vector2();
@@ -51,7 +52,6 @@ var raycaster = new THREE.Raycaster();
 var intersectedObjs;
 var refPlane;
 
-var offset = new THREE.Vector3();
 var objects = [];
 var INTERSECTED, SELECTED;
 
@@ -76,11 +76,9 @@ animate();
 //----------------------------------------------------------------------------- INIT
 function init(){
 
-
   initProgram();
   initEvents();
   initClasses();
-
   initButtons();
   console.log(scene);
 }// end init
@@ -95,11 +93,9 @@ function animate () {
   orientCntrl.update();
   transformCntrl.update();
 
-  var v = new THREE.Vector3(0,0,1).applyQuaternion(refPlane.quaternion);
+  // var v = new THREE.Vector3(0,0,1).applyQuaternion(refPlane.quaternion);
   // document.getElementById("OutlinerM").innerHTML = ( v.x +"<br> "+ v.y +"<br> "+ v.z );
 
-
-  popGenCounter();
   // ------------------------------------------------------ RUN CLASSES
   myAgentSystem.run();
   myEnvironment.run();
@@ -275,13 +271,22 @@ function initClasses(){
 }// end initClasses
 
 // ---------------------------------------------------------------------------- POP GEN COUNTER
-function popGenCounter(){
-  if (iCounter % genStep == 0 && genCount < 500){
+function timer(){
+  // TIMED EVENT 01
+  if (TIME % genStep == 0 && genCount < 500){
     populationFlag = true;
     genCount++;
-  }
-  else{
+  }else{
     populationFlag = false;
   }
-  iCounter++;
-}// end popGenCounter
+  
+  // TIMED EVENT 02
+  if(bakeFlag == true){
+    if (TIME > stoptime) {
+      bakeFlag = false;
+    }
+  }
+
+  // COUNT
+  TIME++;
+}// end timer

@@ -69,18 +69,18 @@
 
                 <div class="mdl-card mdl-cell mdl-cell--12-col mdl-tabs__panel is-active" id="control-panel">
                   
-                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect" 
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--primary" 
                           style="margin-left: 5px"
                           id = "PopStrategy"> 
-                          Appomixis 
+                          Appomixis C 
                   </button>
 
                   <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-                      for="PopStrategy">
-                    <li class="mdl-menu__item">Appomixis B</li>
-                    <li class="mdl-menu__item">Appomixis C</li>
-                    <li class="mdl-menu__item">Strategy A</li>
-                    <li class="mdl-menu__item">Paint</li>
+                      for="PopStrategy" id="PopSwitcher">
+                    <li class="mdl-menu__item" id="Appomixis_B">Appomixis B</li>
+                    <li class="mdl-menu__item" id="Appomixis_C">Appomixis C</li>
+                    <li class="mdl-menu__item" id="Strategy_A">Strategy A</li>
+                    <li class="mdl-menu__item" id="Paint">Paint</li>
                   </ul>
 
                   <p class="mdl-card__supporting-text">Population Strategy</p>
@@ -91,8 +91,26 @@
                   <p class="mdl-card__supporting-text">Speed Limit</p>
                   <input id="s1" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="20" tabindex="0">
                   <p class="mdl-card__supporting-text">Maxmimal Count</p>
-                  <input id="s1" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="25" tabindex="0">
-                  <p class="mdl-card__supporting-text">Material</p>
+                  <!-- Edgle length Range -->
+                  <div>
+                    <form action="#">
+                      <div class="mdl-textfield mdl-js-textfield" style=" float: left; width: 75px; margin-left: 25px;">
+                        <input class="mdl-textfield__input mdl-color-text--primary" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="MaxLength" style="text-align: center;">
+                        <label class="mdl-textfield__label" for="MaxLength" style="text-align: center;">180</label>
+                        <label class="mdl-card__supporting-text" style="text-align: center;">Max</label>
+                      </div>
+                    </form>
+
+                    <form action="#">
+                      <div class="mdl-textfield mdl-js-textfield" style=" float: right; width: 75px; margin-right: 25px;">
+                        <input class="mdl-textfield__input mdl-color-text--primary" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="MinLength" style="text-align: center;">
+                        <label class="mdl-textfield__label" for="MinLength" style="text-align: center;">620</label>
+                        <label class="mdl-card__supporting-text" style="text-align: center;">Max</label>
+                      </div>
+                    </form>                    
+                  </div>
+
+
                 </div>
 
                 <div class="mdl-card mdl-cell mdl-cell--12-col mdl-tabs__panel " id="console-panel">

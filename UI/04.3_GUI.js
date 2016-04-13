@@ -46,7 +46,12 @@ function initButtons(){
 
 	// Refresh
   refreshBtn = document.getElementById( "Refresh" );
-  refreshBtn.addEventListener( "click", function() { myEnvironment.refresh(); });
+  refreshBtn.addEventListener( "click", function() { 
+  	myEnvironment.refresh();
+  	console.log(myEnvironment);
+  	myAgentSystem.refresh();
+  	TIME = 0;
+  });
 
 	// BAKE
   bakeBtn = document.getElementById( "Bake" );
@@ -89,4 +94,18 @@ function initButtons(){
   saveBtn.addEventListener( "click", function() { 
     saveScene();    
   });
+
+  // SWITCH POPULATION STRATEGY
+  popBtn1 = document.getElementById( "Appomixis_B" );
+  popBtn2 = document.getElementById( "Appomixis_C" );
+  popBtn3 = document.getElementById( "Strategy_A" );
+  popBtn4 = document.getElementById( "Paint" );
+
+  popBtn1.addEventListener( "click",function(){ switchPopulation( popBtn1 ); });
+  popBtn2.addEventListener( "click",function(){ switchPopulation( popBtn2 ); });
+  popBtn3.addEventListener( "click",function(){ switchPopulation( popBtn3 ); });
+  popBtn4.addEventListener( "click",function(){ switchPopulation( popBtn4 ); });
+
+  // GET VALUES FROM CONTROL PANEL
+
 }// end initButtons

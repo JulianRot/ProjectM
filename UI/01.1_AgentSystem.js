@@ -22,13 +22,6 @@ AgentSystem = function(){
   this.pointGeo = new THREE.Geometry();  
   this.pointObj = new THREE.Points( this.pointGeo, ml.points_50_greyD);
   this.pointObj.renderOrder = 2;
-
-  //------------------------------------------------------- INIT
-  this.init = function( _environment ){
-    this.environment = _environment;
-    this.createStockVertices();
-    WALL.add(this.pointObj);
-  }// end init
 }
 
 
@@ -36,13 +29,36 @@ AgentSystem.prototype = {
 
   constructor: AgentSystem,
 
+  //------------------------------------------------------- INIT
+  init : function( _environment ){
+    this.environment = _environment;
+    this.createStockVertices();
+    scene.add(this.pointObj);
+  },// end init
+  
+  //------------------------------------------------------- INIT
+  refresh : function (){
+    
+    // DELETE ALL OBJECTS
+    scene.remove( this.pointObj );
+    this.pointGeo = new THREE.Geometry();
+    WALL.children = [];
+    PREVIEW.children = [];
+    this.container = [];
+    this.tetAgentsCheckSum = [];
+    this.tetAgents = [];
+    this.polyAgents = [];
+    this.init( myEnvironment );
+
+  },// end refresh
+
   //------------------------------------------------------- RUN
   run : function(){
     
     // POPULATION HANDLER
     GP.birthcount = 0;
     this.populationHandlerOnRun();
-    console.log(bakeFlag);
+    // console.log(bakeFlag);
     // RUNNING
     if (playFlag == true) {
 
@@ -103,10 +119,12 @@ AgentSystem.prototype = {
   populationHandlerOnRun : function(){
     stoptime = 7999;
 
-    switch("A"){
+    switch( GP.populationStrategy ){
 
-      case "A":
+      case "Strategy A":
         //----- STRATEGY A
+        TC.growthStyle = "CENTRAL"
+        AC.createTet = true;
         genStep = 100;
         // stoptime = 250;
         this.popPlanar_OnFlag();
@@ -132,8 +150,8 @@ AgentSystem.prototype = {
         genStep = 150;
         var start = 100;
         // stoptime = 4000;
-        if ( iCounter == start ) this.popOneTet();
-        else if ( iCounter > start ) this.popFreeFaces_OnFlag();
+        if ( TIME == start ) this.popOneTet();
+        else if ( TIME > start ) this.popFreeFaces_OnFlag();
         break;
 
       case "D":
@@ -141,8 +159,8 @@ AgentSystem.prototype = {
         genStep = 100;
         var start = 100;
         // stoptime = 4000;
-        if ( iCounter == start ) this.popOneTet();
-        else if ( iCounter > start ) {
+        if ( TIME == start ) this.popOneTet();
+        else if ( TIME > start ) {
           this.setProductiveVoxels();
           if (this.count % 2 == 0) this.environment.productiveVoxels.reverse();
           this.popFreeFacesAndProductiveVoxels_OnFlag();
@@ -154,8 +172,8 @@ AgentSystem.prototype = {
         genStep = 100;
         var start = 100;
         // stoptime = 4000;
-        if ( iCounter == start ) this.popOneTet();
-        else if ( iCounter > start ) this.popFreeFaces_OnFlag();
+        if ( TIME == start ) this.popOneTet();
+        else if ( TIME > start ) this.popFreeFaces_OnFlag();
         break;
 
       case "F":
@@ -163,8 +181,8 @@ AgentSystem.prototype = {
         genStep = 20;
         var start = 100;
         // stoptime = 4000;
-        // if ( iCounter == start ) this.popOneTet();
-        if ( iCounter > start ) this.popCarroussel();
+        // if ( TIME == start ) this.popOneTet();
+        if ( TIME > start ) this.popCarroussel();
         break;
 
 
@@ -173,8 +191,8 @@ AgentSystem.prototype = {
         genStep = 48;
         var start = 10;
         // stoptime = 4000;
-        if ( iCounter == start ) this.popOneTet();
-        else if ( iCounter > start && this.tetAgents.length < 3) {
+        if ( TIME == start ) this.popOneTet();
+        else if ( TIME > start && this.tetAgents.length < 3) {
           this.setProductiveVoxels();
           if (this.count % 2 == 0) this.environment.productiveVoxels.reverse();
           this.popFreeFacesAndProductiveVoxels_OnFlag();
@@ -184,59 +202,58 @@ AgentSystem.prototype = {
       case "L":
         //----- LOAD FROM JSON
         var start = 50;
-        if ( iCounter == start ) this.popFromJSON();
-        // if ( iCounter == start+1 ) bakeFlag = false;
+        if ( TIME == start ) this.popFromJSON();
+        // if ( TIME == start+1 ) bakeFlag = false;
         break;
 
-      case "APOMIXIS":
+      case "Appomixis B":
         //----- LOAD FROM JSON
         var start = 50;
         var genStep = 200;
-        if ( iCounter == start ) this.popOneTet();
+        TC.growthStyle = "BRANCH"
 
-        if ( iCounter % genStep == 0 ) {
+        if ( TIME == start ) this.popOneTet();
+
+        if ( TIME % genStep == 0 ) {
           TC.apomixis = true;
           AC.createTet = false;
           AC.p_mergeAgents = false;
-
         }
         else{
           TC.apomixis = false;
           AC.createTet = false;
           AC.p_mergeAgents = true;
-
         }
         break;
 
-      case "MEIOSIS":
+      case "Appomixis C":
         //----- LOAD FROM JSON
         var start = 50;
         var genStep = 200;
-        if ( iCounter == start ) this.popOneTet();
+        TC.growthStyle = "CENTRAL"
+        
+        if ( TIME == start ) this.popOneTet();
 
-        if ( iCounter % genStep == 0 ) {
-          if ( this.tetAgents.length < 2) TC.apomixis = true;
-          else TC.meiosis = true;
-
+        if ( TIME % genStep == 0 ) {
+          TC.apomixis = true;
           AC.createTet = false;
           AC.p_mergeAgents = false;
         }
         else{
           TC.apomixis = false;
-          TC.meiosis = false;
           AC.createTet = false;
-          AC.p_mergeAgents = false;
+          AC.p_mergeAgents = true;
         }
         break;
 
       case "LOAD":
         //----- LOAD FROM JSON
         var start = 50;
-        if ( iCounter == start ){
+        if ( TIME == start ){
           this.loadJSON( CANDIDAT_11 );
           this.bakeAgents();
         } 
-        // if ( iCounter == start+1 ) bakeFlag = false;
+        // if ( TIME == start+1 ) bakeFlag = false;
         playFlag = false;
         break;
         

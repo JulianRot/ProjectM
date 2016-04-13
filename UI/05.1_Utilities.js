@@ -1,15 +1,6 @@
 
 // ---------------------------------------------------------------------------- UTILITIES
 
-// ---------------------------------------------------------------------------- TIMER
-function timer() {
-  if(bakeFlag == true){
-    if (iCounter > stoptime) {
-      bakeFlag = false;
-    }
-  }
-}// end timer
-
 // ---------------------------------------------------------------------------- MAP LINEAR
 function map(value, low1, high1, low2, high2) {
     return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
@@ -614,4 +605,11 @@ function getElement ( uid ){
       };
       break;      
   }
-}
+}// end getElement
+
+// ---------------------------------------------------------------------------- SWITCH POPULATION STRATEGY
+function switchPopulation ( btn ){
+  var selPopStrat = document.getElementById( "PopStrategy" );
+  selPopStrat.innerText = btn.innerText;
+  GP.populationStrategy = btn.innerText;
+}// end switchPopulation

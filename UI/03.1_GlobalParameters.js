@@ -15,8 +15,9 @@ var GP = {
 
 	// POPULATION RELATED
 	birthcount : 0,
-	maxBirthRate : 1,
-	maxTetCount : 100
+	maxBirthRate : 3,
+	maxTetCount : 100,
+	populationStrategy : "Appomixis C"
 };
 
 //------------------------------------------------------- ALL VARIABLE FOR AGENT CONTROL
