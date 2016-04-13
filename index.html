@@ -94,18 +94,16 @@
                   <!-- Edgle length Range -->
                   <div>
                     <form action="#">
-                      <div class="mdl-textfield mdl-js-textfield" style=" float: left; width: 75px; margin-left: 25px;">
-                        <input class="mdl-textfield__input mdl-color-text--primary" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="MinLength" style="text-align: center;">
-                        <label class="mdl-textfield__label" for="MinLength" style="text-align: center;">180</label>
-                        <label class="mdl-card__supporting-text" style="text-align: center;">Min</label>
+                      <div class="mdl-textfield mdl-js-textfield" style=" float: left; width: 145px; margin-left: 5px;">
+                        <input id="MinLength" class="mdl-slider mdl-js-slider" type="range" min="180" max="600" value="200" tabindex="0">
+                        <label class="mdl-card__supporting-text" style="text-align: center;">Min Edge L</label>
                       </div>
                     </form>
 
                     <form action="#">
-                      <div class="mdl-textfield mdl-js-textfield" style=" float: right; width: 75px; margin-right: 25px;">
-                        <input class="mdl-textfield__input mdl-color-text--primary" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="MaxLength" style="text-align: center;">
-                        <label class="mdl-textfield__label" for="MaxLength" style="text-align: center;">620</label>
-                        <label class="mdl-card__supporting-text" style="text-align: center;">Max</label>
+                      <div class="mdl-textfield mdl-js-textfield" style=" float: right; width: 145px; margin-right: 5px;">
+                        <input id="MaxLength" class="mdl-slider mdl-js-slider" type="range" min="200" max="620" value="300" tabindex="0">
+                        <label class="mdl-card__supporting-text" style="text-align: center;">Max Edge L</label>
                       </div>
                     </form>                    
                   </div>

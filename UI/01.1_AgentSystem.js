@@ -547,7 +547,7 @@ AgentSystem.prototype = {
 
     }
   },// end popCarroussel
-
+  
   //------------------------------------------------------- POP FROM UNOCCUPIED FACES 
   popFreeFacesAndProductiveVoxels_OnFlag : function(){
 

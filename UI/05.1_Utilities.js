@@ -585,27 +585,60 @@ function recursiveGroups ( facepairs, target ){
 // ---------------------------------------------------------------------------- FIND AND GET ELEMENTS BY UID
 function getElement ( uid ){
   var parts = uid.split("-");
-  
+  var element;
+  console.log(parts);
   switch( parts[0]){
     case "T":
+    case "t":
       for (var i = 0, il = myAgentSystem.tetAgents.length; i < il; i++) {
-        if(myAgentSystem.tetAgents[i].ID.toString() != parts[1]){
-          outliner.innerHTML = (JSON.stringify(myAgentSystem.tetAgents[i].neighbours,null,'\r\n'));
+        if(myAgentSystem.tetAgents[i].ID == parseFloat(parts[1]) ){
+          element = myAgentSystem.tetAgents[i];
+          outliner.innerHTML = (element.getOutlineInfo());
           break;
         }
       };
       break;
 
     case "P":
-      for (var i = 0, il = myAgentSystem.tetAgents.length; i < il; i++) {
-        if(myAgentSystem.polyAgents[i].ID.toString() == parts[1]){
-          outliner.innerHTML = (myAgentSystem.polyAgents[i].ID.neighbours);
+    case "p":
+      for (var i = 0, il = myAgentSystem.polyAgents.length; i < il; i++) {
+        if(myAgentSystem.polyAgents[i].ID == parseFloat(parts[1]) ){
+          element = myAgentSystem.polyAgents[i];
+          outliner.innerHTML = (element.getOutlineInfo());
           break;
         }
       };
-      break;      
+      break;
+
+    case "FUID":
+    case "fuid":
+      var tempAgent, tempFuids, normal, connected = [];
+      for (var i = 0, il = myAgentSystem.tetAgents.length; i < il; i++) {
+        tempAgent = myAgentSystem.tetAgents[i];
+        tempFuids = tempAgent.getFUID();
+
+        if(tempFuids.indexOf(parseFloat(parts[1])) != -1){
+          element = tempAgent;
+          normal = element.getFaceNormal( tempFuids.indexOf(parseFloat(parts[1])) );
+          (element.poly == null) ? connected.push("T-"+element.ID) : connected.push("P-"+element.poly.ID);
+          // break;
+        }
+      };
+
+      outliner.innerHTML = "<i>Elements connected to this face :</i><br><b>" + connected + "</b>";
+      break;     
   }
+
+  return element;
 }// end getElement
+
+// -------------------------------------------------------- UPDATE OUTLINER
+function updateOutliner( object ){
+  outliner.innerHTML = "<i>Selected Element :</i><br>" + object.userData;
+  // var element = getElement(object.name);
+  // element.getFUID();
+  // console.log(element);
+}// end updateOutliner
 
 // ---------------------------------------------------------------------------- SWITCH POPULATION STRATEGY
 function switchPopulation ( btn ){
@@ -624,5 +657,4 @@ function getValueInputFromDOM ( btn, target, selector, min, max ){
 
   console.log(target);
   btn.value = target[selector];
-
 }// end getTextFieldInput

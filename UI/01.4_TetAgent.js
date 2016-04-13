@@ -941,6 +941,7 @@ TetAgent.prototype = {
 			var frameMesh = new THREE.Mesh(this.fg.frameGeo, material);
 			frameMesh.renderOrder = 2;
 			frameMesh.userData = info;
+			frameMesh.name ="T-" + this.ID;
 			WALL.add(frameMesh);
 		}
 
@@ -949,6 +950,7 @@ TetAgent.prototype = {
 			var outlineMesh = new THREE.Mesh(this.fg.outlineGeo, ml.wire_blueD);
 			outlineMesh.renderOrder = 2;
 			outlineMesh.userData = info;
+			outlineMesh.name ="T-" +  this.ID;
 			WALL.add(outlineMesh);
 		}
 
@@ -957,6 +959,7 @@ TetAgent.prototype = {
 			var openingMesh = new THREE.Mesh(this.fg.openingGeo, ml.wire_blueD);
 			openingMesh.renderOrder = 2;
 			openingMesh.userData = info;
+			openingMesh.name ="T-" +  this.ID;
 			WALL.add(openingMesh);
 		}
 
@@ -965,6 +968,7 @@ TetAgent.prototype = {
 			var jointsMesh = new THREE.Points(this.fg.jointsGeo, ml.points_10_blueD);
 			jointsMesh.renderOrder = 2;
 			jointsMesh.userData = info;
+			jointsMesh.name ="T-" +  this.ID;
 			WALL.add(jointsMesh);
 		}
 	},// end displayFabGeo
@@ -1301,6 +1305,26 @@ TetAgent.prototype = {
 
 		return jointPoints
 	},// end makeJoints
+
+	//------------------------------------------------------- GET FACE UID
+	getFUID : function(){
+		// CREATE FACE UID
+		var framePointsFolded = this.getFramePoints( this.faceVertexIndex );
+		var faceUID = [];
+
+		for (var i = 0; i < framePointsFolded.length; i++) {
+			var fUID = 0;
+			for (var j = 0; j < framePointsFolded[ i ].length; j++) {
+				fUID += Math.round( framePointsFolded[i][j].x );
+				fUID += Math.round( framePointsFolded[i][j].y );
+				fUID += Math.round( framePointsFolded[i][j].z );
+			}
+			faceUID.push( fUID );
+		}
+
+		// console.log(faceUID);
+		return faceUID;
+	},// end getFUID
 	
 	//------------------------------------------------------- DISPLAY FABRICATION GEOMETRY
 	createGeometry : function( fabLocs, normals, withFaces ){
@@ -2025,7 +2049,9 @@ TetAgent.prototype = {
   		}  		
   	};
 
-  	var info = "<b>Meta-Agent</b>" + "<br>" + me + "<br>" + friends;
+  	var fuid = "FUID: " + this.getFUID();
+
+  	var info = "<b>Meta-Agent</b>" + "<br>" + me + "<br>" + friends + "<br>" + fuid;
   	return info;
   }// end getOutlineInfo
   //----------------------------------------------------------------------------- END TETAGENT

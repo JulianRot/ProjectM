@@ -52,13 +52,13 @@ function onDocumentMouseDown( event ) {
 
 			// UPDATE OUTLINER WITH INFORMATION ABOUT SELECTED
 			updateOutliner( SELECTED );
+
 		}
 	}
 	else {
 		if ( SELECTED == null ) transformCntrl.detach();		
 		SELECTED = null;
 	}
-
 }// end onDocumentMouseDown
 
 // -------------------------------------------------------- ON DOCUMENT MOUSE UP
@@ -72,7 +72,3 @@ function onDocumentMouseUp( event ) {
 	domContainer.style.cursor = "auto";
 }// end onDocumentMouseUp
 
-// -------------------------------------------------------- UPDATE OUTLINER
-function updateOutliner( object ){
-	outliner.innerHTML = "<i>Selected Element :</i><br>" + object.userData;
-}// end updateOutliner

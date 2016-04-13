@@ -245,6 +245,7 @@ PolyAgent.prototype = {
 			var frameMesh = new THREE.Mesh(this.fg.frameGeo, material);
 			frameMesh.renderOrder = 2;
 			frameMesh.userData = info;
+			frameMesh.name ="T-" + this.ID;
 			WALL.add(frameMesh);
 		}
 
@@ -253,6 +254,7 @@ PolyAgent.prototype = {
 			var outlineMesh = new THREE.Mesh(this.fg.outlineGeo, ml.wire_blueB);
 			outlineMesh.renderOrder = 2;
 			outlineMesh.userData = info;
+			outlineMesh.name ="T-" + this.ID;
 			WALL.add(outlineMesh);
 		}
 
@@ -261,6 +263,7 @@ PolyAgent.prototype = {
 			var openingMesh = new THREE.Mesh(this.fg.openingGeo, ml.wire_blueB);
 			openingMesh.renderOrder = 2;
 			openingMesh.userData = info;
+			openingMesh.name ="T-" + this.ID;
 			WALL.add(openingMesh);
 		}
 
@@ -269,6 +272,7 @@ PolyAgent.prototype = {
 			var jointsMesh = new THREE.Points(this.fg.jointsGeo, ml.points_10_blueB);
 			jointsMesh.renderOrder = 2;
 			jointsMesh.userData = info;
+			jointsMesh.name ="T-" + this.ID;
 			WALL.add(jointsMesh);
 		}
 	},// end displayFabGeo
