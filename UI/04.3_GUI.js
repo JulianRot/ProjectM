@@ -107,5 +107,30 @@ function initButtons(){
   popBtn4.addEventListener( "click",function(){ switchPopulation( popBtn4 ); });
 
   // GET VALUES FROM CONTROL PANEL
+  minLengthBtn = document.getElementById( "MinLength" );
+  maxLengthBtn = document.getElementById( "MaxLength" );
+  minLengthBtn.addEventListener( "change", function(){
+  	getValueInputFromDOM(minLengthBtn, morphospace, "minEdgelength", 180, 600);
+  	console.log(morphospace);
+
+  });
+  maxLengthBtn.addEventListener( "change", function(){
+  	getValueInputFromDOM(maxLengthBtn, morphospace,"maxEdgelength", 200, 620);
+  	console.log(morphospace);
+  });
+
+  birthRateBtn = document.getElementById( "BirthRate" );
+  speedLimitBtn = document.getElementById( "SpeedLimit" );
+  maxCountBtn = document.getElementById( "MaxCount" );
+
+  birthRateBtn.addEventListener( "change", function(){
+  	getValueInputFromDOM(birthRateBtn, GP,"maxBirthRate", 0, 100);
+  })
+  speedLimitBtn.addEventListener( "change", function(){
+  	getValueInputFromDOM(speedLimitBtn, AC,"m_speedLimit", 0, 100);
+  })
+  maxCountBtn.addEventListener( "change", function(){
+  	getValueInputFromDOM(maxCountBtn, GP,"maxTetCount", 0, 1000);
+  })
 
 }// end initButtons

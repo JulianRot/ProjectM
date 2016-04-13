@@ -613,3 +613,16 @@ function switchPopulation ( btn ){
   selPopStrat.innerText = btn.innerText;
   GP.populationStrategy = btn.innerText;
 }// end switchPopulation
+
+// ---------------------------------------------------------------------------- GET INPUT VALUE FROM TEXT FIELD
+function getValueInputFromDOM ( btn, target, selector, min, max ){
+  var value = parseFloat(btn.value);
+
+  if (value < min) target[selector] = min;
+  else if (value > max) target[selector] = max;
+  else target[selector] = value;
+
+  console.log(target);
+  btn.value = target[selector];
+
+}// end getTextFieldInput

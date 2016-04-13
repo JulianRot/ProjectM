@@ -95,8 +95,8 @@ var morphospace = {
 	minEdgeAngle: 45,
 	maxEdgeAngle: 80,
 	
-	minEdgelength: 180,
-	maxEdgelength: 200,
+	minEdgelength: 300,
+	maxEdgelength: 400,
 
 	bendingRad: 25,	
 	matThickness: 1.0,
