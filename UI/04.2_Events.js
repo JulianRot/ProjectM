@@ -92,6 +92,7 @@ function infoInput(){
 				outputTarget.innerHTML = "Don't know <b>" + commands + "</b> :(";
 				myOrienTool.clearTargetNormal();
 				break;
+				
 		}
 	}
 }// end infoInput
