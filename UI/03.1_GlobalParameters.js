@@ -17,7 +17,7 @@ var GP = {
 	birthcount : 0,
 	maxBirthRate : 3,
 	maxTetCount : 100,
-	populationStrategy : "LOAD"
+	populationStrategy : "NONE"
 };
 
 //------------------------------------------------------- ALL VARIABLE FOR AGENT CONTROL

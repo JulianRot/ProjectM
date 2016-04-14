@@ -28,8 +28,11 @@
           <div class="mdl-layout-spacer"></div>
           <!-- PLAY BUTTON -->
           <div>
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab mdl-button--colored" id="play">
-              <i class="material-icons">play_arrow</i>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="play">
+              PLAY
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" id="Refresh">
+              Refresh
             </button>
           </div>
         </div>
@@ -39,15 +42,12 @@
       <div class="mdl-layout__drawer" >
           <span class="mdl-layout-title">Options</span>
           <nav class="mdl-navigation">
-              <li class="mdl-navigation__link" id="Refresh">Refresh</li>
               <li class="mdl-navigation__link" id="Bake">Toggle Bake</li>
               <li class="mdl-navigation__link" id="UnfoldTets">Unfold Tets</li>
               <li class="mdl-navigation__link" id="UnfolPoly">Unfold Poly</li>
               <li class="mdl-navigation__link" id="CutFiles">Get Cut Files</li>
               <li class="mdl-navigation__link" id="Export">Export .obj</li>
               <li class="mdl-navigation__link" id="Save">Save</li>
-              <li class="mdl-navigation__link" id="loadDefault">Load Default</li>
-              <li class="mdl-navigation__link" id="loadPrometheus">Load Prometheus</li>
           </nav>
       </div>
 
@@ -74,7 +74,7 @@
                   <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--primary" 
                           style="margin-left: 5px"
                           id = "PopStrategy"> 
-                          Appomixis C 
+                          Click Me and REFRESH!
                   </button>
 
                   <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
@@ -82,7 +82,8 @@
                     <li class="mdl-menu__item" id="Appomixis_B">Appomixis B</li>
                     <li class="mdl-menu__item" id="Appomixis_C">Appomixis C</li>
                     <li class="mdl-menu__item" id="Strategy_A">Strategy A</li>
-                    <li class="mdl-menu__item" id="Paint">Paint</li>
+                    <li disabled class="mdl-menu__item" id="Paint">Paint</li>
+                    <li class="mdl-menu__item" id="Load">Load Prometheus</li>
                   </ul>
 
                   <p class="mdl-card__supporting-text">Population Strategy</p>

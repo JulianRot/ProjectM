@@ -680,7 +680,7 @@ function changeColorOfSelected ( ID ){
       console.log(WALL.children[i]);
     }
   }
-}
+}// end changeColorOfSelected
 
 // ---------------------------------------------------------------------------- RESTORE MATERIAL
 function restoreMaterials (){
@@ -704,4 +704,16 @@ function restoreMaterials (){
       PREVIEW.children[i].material = PREVIEW.children[i].originalMat;
     }
   }
-}
+}// end restoreMaterials
+
+function hidePreview(){
+  for (var i = 0; i < PREVIEW.children.length; i++) {
+    PREVIEW.children[i].visible = false;
+  }
+}// end hidePreview
+
+function unhidePreview(){
+  for (var i = 0; i < PREVIEW.children.length; i++) {
+    PREVIEW.children[i].visible = true;
+  }
+}// end hidePreview

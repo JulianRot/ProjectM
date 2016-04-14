@@ -246,7 +246,7 @@ AgentSystem.prototype = {
         }
         break;
 
-      case "LOAD":
+      case "Load Prometheus":
         //----- LOAD FROM JSON
         var start = 50;
         if ( TIME == start ){

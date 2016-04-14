@@ -42,11 +42,30 @@ function initButtons(){
 
 	// PLAY GROWTH
 	playBtn = document.getElementById("play");
-	playBtn.addEventListener( "click", function(){ playFlag = !playFlag; });
+	playBtn.addEventListener( "click", function(){ 
+		playFlag = !playFlag;
+		playBtn.innerHTML = ( playFlag == true ) ? "PAUSE" : "PLAY";
+
+		if (bakeFlag == false) { 
+  		playFlag = false;
+  		bakeFlag = true;
+  		myAgentSystem.bakeAgents();
+  		hidePreview();
+  	}
+  	else{
+  		playFlag = true;
+  		bakeFlag = false;
+  		unhidePreview();
+  	}
+	});
 
 	// Refresh
   refreshBtn = document.getElementById( "Refresh" );
   refreshBtn.addEventListener( "click", function() { 
+  	//RESET PLAY BTN
+  	playBtn.innerHTML = "PLAY";
+  	playFlag = false;
+  	//RESET ENVI
   	myEnvironment.refresh();
   	console.log(myEnvironment);
   	myAgentSystem.refresh();
@@ -100,11 +119,13 @@ function initButtons(){
   popBtn2 = document.getElementById( "Appomixis_C" );
   popBtn3 = document.getElementById( "Strategy_A" );
   popBtn4 = document.getElementById( "Paint" );
+  popBtn5 = document.getElementById( "Load" );
 
   popBtn1.addEventListener( "click",function(){ switchPopulation( popBtn1 ); });
   popBtn2.addEventListener( "click",function(){ switchPopulation( popBtn2 ); });
   popBtn3.addEventListener( "click",function(){ switchPopulation( popBtn3 ); });
   popBtn4.addEventListener( "click",function(){ switchPopulation( popBtn4 ); });
+  popBtn5.addEventListener( "click",function(){ switchPopulation( popBtn5 ); });
 
   // GET VALUES FROM CONTROL PANEL
   minLengthBtn = document.getElementById( "MinLength" );
