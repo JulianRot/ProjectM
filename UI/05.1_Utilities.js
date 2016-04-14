@@ -635,7 +635,8 @@ function getElement ( uid ){
 
 // ---------------------------------------------------------------------------- UPDATE OUTLINER
 function updateOutliner( object ){
-  outliner.innerHTML = "<i>Selected Element :</i><br>" + object.userData;
+  var outputTarget = ( document.getElementById("Outliner").offsetParent === null) ? document.getElementById("OutlinerM") : document.getElementById("Outliner");
+  outputTarget.innerHTML = "<i>Selected Element :</i><br>" + object.userData;
   // var element = getElement(object.name);
   // element.getFUID();
   // console.log(element);
@@ -726,4 +727,4 @@ function refreshScene(){
   myEnvironment.refresh();
   myAgentSystem.refresh();
   TIME = 0;
-}
+}// end refreshScene
