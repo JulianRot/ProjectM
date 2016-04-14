@@ -717,3 +717,13 @@ function unhidePreview(){
     PREVIEW.children[i].visible = true;
   }
 }// end hidePreview
+
+function refreshScene(){
+  //RESET PLAY BTN
+  playBtn.innerHTML = "PLAY";
+  playFlag = false;
+  //RESET ENVI
+  myEnvironment.refresh();
+  myAgentSystem.refresh();
+  TIME = 0;
+}

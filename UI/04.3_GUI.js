@@ -62,14 +62,7 @@ function initButtons(){
 	// Refresh
   refreshBtn = document.getElementById( "Refresh" );
   refreshBtn.addEventListener( "click", function() { 
-  	//RESET PLAY BTN
-  	playBtn.innerHTML = "PLAY";
-  	playFlag = false;
-  	//RESET ENVI
-  	myEnvironment.refresh();
-  	console.log(myEnvironment);
-  	myAgentSystem.refresh();
-  	TIME = 0;
+		refreshScene();
   });
 
 	// BAKE
@@ -120,12 +113,20 @@ function initButtons(){
   popBtn3 = document.getElementById( "Strategy_A" );
   popBtn4 = document.getElementById( "Paint" );
   popBtn5 = document.getElementById( "Load" );
+  loadShortCut = document.getElementById( "LoadShortCut" );
 
   popBtn1.addEventListener( "click",function(){ switchPopulation( popBtn1 ); });
   popBtn2.addEventListener( "click",function(){ switchPopulation( popBtn2 ); });
   popBtn3.addEventListener( "click",function(){ switchPopulation( popBtn3 ); });
   popBtn4.addEventListener( "click",function(){ switchPopulation( popBtn4 ); });
-  popBtn5.addEventListener( "click",function(){ switchPopulation( popBtn5 ); });
+  popBtn5.addEventListener( "click",function(){ 
+  	switchPopulation( popBtn5 );
+  	refreshScene(); 
+  });
+  loadShortCut.addEventListener( "click",function(){ 
+  	switchPopulation( loadShortCut ); 
+  	refreshScene();
+  });
 
   // GET VALUES FROM CONTROL PANEL
   minLengthBtn = document.getElementById( "MinLength" );

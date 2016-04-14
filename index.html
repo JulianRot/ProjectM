@@ -9,8 +9,7 @@
         <link rel="stylesheet" href="libraries/Google-mdl/material.css">
         <script src="libraries/Google-mdl/material.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet">
+
     <!--style> body {padding: 0; margin: 0;} </style-->
 </head>
 
@@ -48,6 +47,7 @@
               <li class="mdl-navigation__link" id="CutFiles">Get Cut Files</li>
               <li class="mdl-navigation__link" id="Export">Export .obj</li>
               <li class="mdl-navigation__link" id="Save">Save</li>
+              <li class="mdl-navigation__link" id="LoadShortCut">Load Prometheus</li>
           </nav>
       </div>
 
@@ -132,15 +132,15 @@
           </section>
 
         <!-- UI ELEMENTS SMALL SCREEN-->
-        <section class="mdl-layout--small-screen-only mdl-shadow--2dp mdl-cell--3-col mdl-color--white" 
-          style="position: relative;position: bottom; margin: 2%; float: right">
+        <section class="mdl-layout--small-screen-only mdl-shadow--2dp mdl-cell mdl-color--white" 
+          style="position: fixed; bottom: 0; float: center">
           
           <div class="mdl-card mdl-cell" id="console-panel">
             <!-- OUTPUT CONSOLE -->
             <p class="mdl-color-text--grey-600 mdl-cell" id="OutlinerM"><i>If you select something, I will unveil my treasure! ;-) </i></p>
             <!-- INPUT CONSOLE -->
             <form action="#">
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style=" position: absolute; bottom: 1px">
                 <input class="mdl-textfield__input" type="text" id="BashM">
                 <label class="mdl-textfield__label" for="BashM">Bash>_</label>
               </div>
