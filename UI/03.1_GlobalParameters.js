@@ -171,6 +171,7 @@ var ml = {
 	wire_greyM : new THREE.MeshBasicMaterial( { color: mc.myGreyM, wireframe : true } ),
 	wire_greyB : new THREE.MeshBasicMaterial( { color: mc.myGreyB, wireframe : true } ),
 	wire_grey : new THREE.MeshBasicMaterial( { color: mc.myGrey, wireframe : true } ),
+	wire_SELECTION : new THREE.MeshBasicMaterial( { color: mc.myRedB, wireframe : true } ),
 
 	// LINE MATERIAL
 	line_grey : new THREE.LineBasicMaterial( { color : mc.myGrey, linewidth  : 1 } ),
@@ -187,5 +188,5 @@ var ml = {
 	points_10_purpD :  new THREE.PointsMaterial( {color: mc.myPurpleD, size: 10, sizeAttenuation: true} ),
 	points_10_greenD :  new THREE.PointsMaterial( {color: mc.myGreenD, size: 10, sizeAttenuation: true} ),
 	points_40_redB :  new THREE.PointsMaterial( {color: mc.myRedB, size: 40, sizeAttenuation: true} ),
-	points_Envi :  new THREE.PointsMaterial( {color: mc.myRedD, size: 35, sizeAttenuation: true} ),
+	points_Envi :  new THREE.PointsMaterial( {color: mc.myGreyM, size: 35, sizeAttenuation: true} ),
 };

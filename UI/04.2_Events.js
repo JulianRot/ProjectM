@@ -54,6 +54,8 @@ function onWindowResize() {
 
 // ---------------------------------------------------------------------------- ON INFO INPUT
 function infoInput(){
+	restoreMaterials();
+
 	var inputDom = ( document.getElementById("Bash").offsetParent === null) ? document.getElementById("BashM") : document.getElementById("Bash");
 	// var inputDom = ( document.getElementById("BashM"));
 	// console.log (inputDom.offsetParent);
@@ -76,14 +78,16 @@ function infoInput(){
 		switch (commands[0]){
 			case "morphospace":
 			case "ms":
+			case "Ms":
 				outputTarget.innerHTML += "<br>" + JSON.stringify(morphospace,null,'<br>');
 				break;
 
-			case "find" :
+			case "Get" :
 			case "get" :
 
 			  if (commands.length == 1) outputTarget.innerHTML = "Get What?";
 			  else {
+			  	changeColorOfSelected( commands[1] );
 			  	getElement(commands[1]);
 			  }
 				break;
@@ -92,7 +96,7 @@ function infoInput(){
 				outputTarget.innerHTML = "Don't know <b>" + commands + "</b> :(";
 				myOrienTool.clearTargetNormal();
 				break;
-				
+
 		}
 	}
 }// end infoInput

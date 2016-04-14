@@ -7,7 +7,7 @@ cPlane = function( _origin, _normal ){
 	this.vertices = [];
 	this.plane;
 	this.geometry = new THREE.Geometry();
-	this.material = ml.wire_redB;
+	this.material = ml.wire_greyM;
 	this.object;
 	this.type;
 	this.sizeX = 10;
@@ -76,6 +76,7 @@ cPlane.prototype = {
 		this.geometry.computeFaceNormals();
 		this.geometry.verticesNeedUpdate = true;
 		this.object.material.side = THREE.DoubleSide;
+		this.object.originalMat = this.material;
 		
 		// OBJECT INFORMATION
 		this.object.renderOrder = 1;

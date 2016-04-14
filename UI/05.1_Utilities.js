@@ -586,7 +586,7 @@ function recursiveGroups ( facepairs, target ){
 function getElement ( uid ){
   var parts = uid.split("-");
   var element;
-  console.log(parts);
+  // console.log(parts);
   switch( parts[0]){
     case "T":
     case "t":
@@ -633,7 +633,7 @@ function getElement ( uid ){
   return element;
 }// end getElement
 
-// -------------------------------------------------------- UPDATE OUTLINER
+// ---------------------------------------------------------------------------- UPDATE OUTLINER
 function updateOutliner( object ){
   outliner.innerHTML = "<i>Selected Element :</i><br>" + object.userData;
   // var element = getElement(object.name);
@@ -659,3 +659,49 @@ function getValueInputFromDOM ( btn, target, selector, min, max ){
   console.log(target);
   btn.value = target[selector];
 }// end getTextFieldInput
+
+// ---------------------------------------------------------------------------- ZOOM TO SELECTED
+function zoomToSelected ( target ){
+  console.log(target);
+  var offset = new THREE.Vector3(1,1,1).setLength(1000);
+  offset.add( target );
+  camera.position.x = offset.x;
+  camera.position.y = offset.y;
+  camera.position.z = offset.z;
+  camera.lookAt( target );
+}// end zoomToSelected
+
+// ---------------------------------------------------------------------------- ZOOM TO SELECTED
+function changeColorOfSelected ( ID ){
+  for (var i = 0; i < WALL.children.length; i++) {
+    if(WALL.children[i].name === ID){
+      WALL.children[i].originalMat = WALL.children[i].material;
+      WALL.children[i].material = ml.wire_SELECTION;
+      console.log(WALL.children[i]);
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------- RESTORE MATERIAL
+function restoreMaterials (){
+  //WALL
+  for (var i = 0; i < WALL.children.length; i++) {
+    if (WALL.children[i].originalMat !== undefined) {
+      WALL.children[i].material = WALL.children[i].originalMat;
+    }
+  }
+
+  //CPLANES
+  for (var i = 0; i < CPLANES.children.length; i++) {
+    if (CPLANES.children[i].originalMat !== undefined) {
+      CPLANES.children[i].material = CPLANES.children[i].originalMat;
+    }
+  }
+
+  //PREVIEW
+  for (var i = 0; i < PREVIEW.children.length; i++) {
+    if (PREVIEW.children[i].originalMat !== undefined) {
+      PREVIEW.children[i].material = PREVIEW.children[i].originalMat;
+    }
+  }
+}

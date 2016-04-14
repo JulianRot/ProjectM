@@ -44,6 +44,10 @@ function onDocumentMouseDown( event ) {
 			cameraCntrl.enabled = false;
 			SELECTED = intersects[0].object;
 
+			SELECTED.originalMat = SELECTED.material;
+			SELECTED.material = ml.wire_SELECTION;
+			console.log(SELECTED);
+
 			transformCntrl.detach();
 			transformCntrl.attach(SELECTED);
 			transformCntrl.setSpace("local");
@@ -57,6 +61,7 @@ function onDocumentMouseDown( event ) {
 	}
 	else {
 		if ( SELECTED == null ) transformCntrl.detach();		
+		if(SELECTED) SELECTED.material = SELECTED.originalMat;
 		SELECTED = null;
 	}
 }// end onDocumentMouseDown
