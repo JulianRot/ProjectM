@@ -586,6 +586,8 @@ function recursiveGroups ( facepairs, target ){
 function getElement ( uid ){
   var parts = uid.split("-");
   var element;
+  var outputTarget = ( document.getElementById("Outliner").offsetParent === null) ? document.getElementById("OutlinerM") : document.getElementById("Outliner");
+  
   // console.log(parts);
   switch( parts[0]){
     case "T":
@@ -593,7 +595,7 @@ function getElement ( uid ){
       for (var i = 0, il = myAgentSystem.tetAgents.length; i < il; i++) {
         if(myAgentSystem.tetAgents[i].ID == parseFloat(parts[1]) ){
           element = myAgentSystem.tetAgents[i];
-          outliner.innerHTML = (element.getOutlineInfo());
+          outputTarget.innerHTML = (element.getOutlineInfo());
           break;
         }
       };
@@ -604,7 +606,7 @@ function getElement ( uid ){
       for (var i = 0, il = myAgentSystem.polyAgents.length; i < il; i++) {
         if(myAgentSystem.polyAgents[i].ID == parseFloat(parts[1]) ){
           element = myAgentSystem.polyAgents[i];
-          outliner.innerHTML = (element.getOutlineInfo());
+          outputTarget.innerHTML = (element.getOutlineInfo());
           break;
         }
       };
@@ -626,7 +628,7 @@ function getElement ( uid ){
         }
       };
 
-      outliner.innerHTML = "<i>Elements connected to this face :</i><br><b>" + connected + "</b>";
+      outputTarget.innerHTML = "<i>Elements connected to this face :</i><br><b>" + connected + "</b>";
       break;     
   }
 

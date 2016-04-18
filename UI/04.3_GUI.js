@@ -65,6 +65,14 @@ function initButtons(){
 		refreshScene();
   });
 
+	// CANDY - BUTTON
+  candyBtn = document.getElementById( "Candy" );
+  candyBtn.addEventListener( "click", function() { 
+		changeColorOfSelected( "T-24377" );
+		getElement( "T-24377" );
+		getElement( "FUID-15330" );
+  });
+
 	// BAKE
   bakeBtn = document.getElementById( "Bake" );
   bakeBtn.addEventListener( "click", function() { 
